@@ -1,11 +1,11 @@
-import { Router } from "express";
-import {
+const { Router } = require("express");
+const {
   addProduct,
   deleteProduct,
   getAllProduct,
   getOneProduct,
   updateProduct,
-} from "../controller/product";
+} = require("../controller/product");
 
 let routerProduct = Router();
 routerProduct.post("/", addProduct);
@@ -14,4 +14,4 @@ routerProduct.delete("/:id", deleteProduct);
 routerProduct.get("/:id", getOneProduct);
 routerProduct.get("/", getAllProduct);
 
-export default routerProduct;
+module.exports = routerProduct;

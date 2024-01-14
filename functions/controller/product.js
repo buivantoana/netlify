@@ -1,8 +1,7 @@
+const product = require("../models/product");
+const { ObjectId } = require("mongodb");
 
-import product from "../models/product";
-import { ObjectId } from "mongodb";
-
-export async function addProduct(req, res) {
+async function addProduct(req, res) {
   try {
     let data = await product.create(req.body);
     if (!data) {
@@ -23,7 +22,7 @@ export async function addProduct(req, res) {
     });
   }
 }
-export async function updateProduct(req, res) {
+async function updateProduct(req, res) {
   try {
     let checkid = ObjectId.isValid(req.params.id);
     if (!checkid) {
@@ -55,7 +54,7 @@ export async function updateProduct(req, res) {
   }
 }
 
-export async function deleteProduct(req, res) {
+async function deleteProduct(req, res) {
   try {
     let checkid = ObjectId.isValid(req.params.id);
     if (!checkid) {
@@ -84,7 +83,7 @@ export async function deleteProduct(req, res) {
   }
 }
 
-export async function getOneProduct(req, res) {
+async function getOneProduct(req, res) {
   try {
     let checkid = ObjectId.isValid(req.params.id);
     if (!checkid) {
@@ -113,7 +112,7 @@ export async function getOneProduct(req, res) {
   }
 }
 
-export async function getAllProduct(req, res) {
+async function getAllProduct(req, res) {
   try {
     let data = await product.find();
     if (!data || !data[0]) {
@@ -134,3 +133,10 @@ export async function getAllProduct(req, res) {
     });
   }
 }
+module.exports = {
+  addProduct,
+  getAllProduct,
+  getOneProduct,
+  deleteProduct,
+  updateProduct,
+};
